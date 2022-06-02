@@ -12,12 +12,7 @@ export default function Main() {
      */
     
     function handleClick() {
-        if(isImportant==="Yes") {
-            setIsImportant("No")
-        }
-        else {
-            setIsImportant("Yes")
-        }
+            setIsImportant(prev => prev==="Yes" ? "No" : "Yes")
     }
 
     const [counter, setCounter] = React.useState(0)
