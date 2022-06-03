@@ -81,7 +81,7 @@ export default function Main() {
             }
             )
         )
-        
+        setAllMemeImages(prev => (prev))
     }
 
 
