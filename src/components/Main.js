@@ -1,4 +1,5 @@
 import React from "react"
+import memesData from "../memesData.js"
 
 export default function Main() {
 
@@ -24,6 +25,66 @@ export default function Main() {
     function handlePlus() {
         setCounter(prev => prev+1)
     }
+
+    const [thingsArray, setThingsArray] = React.useState(["Thing 1", "Thing 2"]);
+    const thingsElements = thingsArray.map(thing => <p key={thing}>{thing}</p>)
+
+    function addItem() {
+        setThingsArray(prev => [...prev, "Thing "+(prev.length+1)])
+    }
+
+
+    const [contact, setContact] = React.useState({
+        firstName: "John",
+        lastName: "Doe",
+        phone: "+1 (719) 555-1212",
+        email: "itsmyrealname@example.com",
+        isFavorite: false
+    })
+
+    let starIcon = 
+        contact.isFavorite ? 
+            require("../images/star-filled.png") : 
+            require("../images/star-empty.png")
+
+    function toggleFavorite() {
+        setContact(
+            prev => ( {
+                    ...prev,
+                    isFavorite: !prev.isFavorite
+                }
+            )
+        )
+        console.log("Toggle Favorite")
+    }
+
+
+
+    //const [memeImage, setMemeImage] = React.useState("http://i.imgflip.com/1bij.jpg")
+    const [meme, setMeme] = React.useState(
+        {
+            topText: "",
+            bottomText: "",
+            randomImage: "http://i.imgflip.com/1bij.jpg"
+        }
+    )
+
+    const [allMemeImages, setAllMemeImages] = React.useState(memesData)
+    
+    function getMemeImage() {
+        const memesArray = allMemeImages.data.memes
+        const randomNumber = Math.floor(Math.random() * memesArray.length)
+        const url = memesArray[randomNumber].url
+        setMeme(prev => (
+            {...prev,
+                randomImage: url
+            }
+            )
+        )
+        
+    }
+
+
 
     return (
         <main>
@@ -52,6 +113,59 @@ export default function Main() {
                 </div>
                 <button className="counter--plus" onClick={handlePlus}>+</button>
             </div>
+            
+            <br></br><br></br><br></br><br></br>
+            <div>
+                <button className="button--add" onClick={addItem}>Add Item</button>
+                {thingsElements}
+            </div>
+
+            <br></br><br></br><br></br><br></br>
+            <article className="card">
+                <img src={require("../images/user.png")} className="card--image" alt="" />
+                <div className="card--info">
+                    <img 
+                        src={starIcon} 
+                        className="card--favorite"
+                        onClick={toggleFavorite}
+                        alt=""/>
+                    <h2 className="card--name">
+                        {contact.firstName + " " + contact.lastName}
+                    </h2>
+                    <p className="card--contact">{contact.phone}</p>
+                    <p className="card--contact">{contact.email}</p>
+                </div>
+                
+            </article>
+
+            <br></br><br></br><br></br><br></br>
+            <img 
+                src={require("../images/troll-face.png")} 
+                className="header--image"
+                alt=""
+            />
+            <h2 className="header--title">Meme Generator</h2>
+            <h4 className="header--project">React Course - Project 3</h4>
+            <div className="form">
+                <input 
+                    type="text"
+                    placeholder="Top text"
+                    className="form--input"
+                />
+                <input 
+                    type="text"
+                    placeholder="Bottom text"
+                    className="form--input"
+                />
+                <button 
+                    className="form--button"
+                    onClick={getMemeImage}
+                >
+                    Get a new meme image 🖼
+                </button>
+            </div>
+            <img src={meme.randomImage} className="meme--image" alt="" />
+        
         </main>
     )
 }
