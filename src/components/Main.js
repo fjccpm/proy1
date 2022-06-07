@@ -1,7 +1,9 @@
 import React from "react"
 import memesData from "../memesData.js"
+import boxes from "../boxes"
+import Box from "./Box"
 
-export default function Main() {
+export default function Main(props) {
 
     const [isImportant, setIsImportant] = React.useState("Yes")
     /**
@@ -85,6 +87,41 @@ export default function Main() {
     }
 
 
+    const [boxesData, setBoxesData] = React.useState(boxes)
+    
+    //const darkMode = true;
+
+    /*const styles = {
+        backgroundColor: props.darkMode ? "#222222" : "#cccccc"
+    }*/
+    
+    /*const boxesElements = boxesData.map(boxData => (
+        <div className="box" style={styles} key={boxData.id}>
+            <p className="box--text">{boxData.id}</p>
+        </div>
+        )
+    )*/
+    function toggle(id) {
+        setBoxesData(
+            prev => (
+                prev.map(
+                    eachBox => eachBox.id===id ? {...eachBox, on: !eachBox.on} : eachBox
+                )
+            )
+        )
+        console.log("toggle " + id)
+    }
+
+    const boxesElements = boxesData.map(boxData => (
+        <Box 
+            key={boxData.id} 
+            id={boxData.id} 
+            on={boxData.on} 
+            toggle={toggle}/>
+        )
+    )
+
+    
 
     return (
         <main>
@@ -165,6 +202,10 @@ export default function Main() {
                 </button>
             </div>
             <img src={meme.randomImage} className="meme--image" alt="" />
+
+
+            <br></br><br></br><br></br><br></br>
+            <h1>{boxesElements}</h1>
         
         </main>
     )
