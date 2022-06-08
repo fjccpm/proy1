@@ -2,6 +2,7 @@ import React from "react"
 import memesData from "../memesData.js"
 import boxes from "../boxes"
 import Box from "./Box"
+import Form from "./Form.js"
 
 export default function Main(props) {
 
@@ -206,6 +207,9 @@ export default function Main(props) {
 
             <br></br><br></br><br></br><br></br>
             <h1>{boxesElements}</h1>
+
+            <br></br><br></br><br></br><br></br>
+            <Form />
         
         </main>
     )
