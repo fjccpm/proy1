@@ -8,7 +8,7 @@ export default function Form() {
         email: ""
     })
 
-    console.log(formData)
+    //console.log(formData)
 
     function handleChange(event)
     {
