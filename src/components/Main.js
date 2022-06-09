@@ -3,6 +3,7 @@ import memesData from "../memesData.js"
 import boxes from "../boxes"
 import Box from "./Box"
 import Form from "./Form.js"
+import Form2 from "./Form2.js"
 
 export default function Main(props) {
 
@@ -85,6 +86,18 @@ export default function Main(props) {
             )
         )
         setAllMemeImages(prev => (prev))
+    }
+
+    function memeChangeHandler(event) {
+        const {name, value} = event.target
+        setMeme(
+            prev => (
+                {
+                    ...prev,
+                    [name]: value
+                }
+            )
+        )
     }
 
 
@@ -189,11 +202,17 @@ export default function Main(props) {
                     type="text"
                     placeholder="Top text"
                     className="form--input"
+                    name="topText"
+                    value={meme.topText}
+                    onChange={memeChangeHandler}
                 />
                 <input 
                     type="text"
                     placeholder="Bottom text"
                     className="form--input"
+                    name="bottomText"
+                    value={meme.bottomText}
+                    onChange={memeChangeHandler}
                 />
                 <button 
                     className="form--button"
@@ -202,7 +221,11 @@ export default function Main(props) {
                     Get a new meme image 🖼
                 </button>
             </div>
-            <img src={meme.randomImage} className="meme--image" alt="" />
+            <div className="meme">
+                <img src={meme.randomImage} className="meme--image" alt="" />
+                <h2 className="meme--text top">{meme.topText}</h2>
+                <h2 className="meme--text bottom">{meme.bottomText}</h2>
+            </div>
 
 
             <br></br><br></br><br></br><br></br>
@@ -210,7 +233,9 @@ export default function Main(props) {
 
             <br></br><br></br><br></br><br></br>
             <Form />
-        
+
+            <br></br><br></br><br></br><br></br>
+            <Form2 />
         </main>
     )
 }
