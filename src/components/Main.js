@@ -75,6 +75,14 @@ export default function Main(props) {
 
     const [allMemeImages, setAllMemeImages] = React.useState(memesData)
     
+    React.useEffect(
+        () => (
+            fetch("https://api.imgflip.com/get_memes")
+                .then(res => res.json())
+                .then(data => setAllMemeImages(data))
+            ), []
+    )
+
     function getMemeImage() {
         const memesArray = allMemeImages.data.memes
         const randomNumber = Math.floor(Math.random() * memesArray.length)
@@ -135,7 +143,16 @@ export default function Main(props) {
         )
     )
 
-    
+    const [starWarsData, setStarWarsData] = React.useState({})
+    const [count, setCount] = React.useState(1)
+
+    React.useEffect(function() {
+        const temp1 = "https://swapi.dev/api/people/" + count
+        console.log(temp1)
+        fetch(temp1)
+            .then(res => res.json())
+            .then(data => setStarWarsData(data))
+    }, [count])
 
     return (
         <main>
@@ -236,6 +253,13 @@ export default function Main(props) {
 
             <br></br><br></br><br></br><br></br>
             <Form2 />
+
+            <br></br><br></br><br></br><br></br>
+            <div>
+            <h2>The count is {count}</h2>
+            <button onClick={() => setCount(prevCount => prevCount + 1)}>Get Next Character</button>
+            <pre>{JSON.stringify(starWarsData, null, 2)}</pre>
+        </div>
         </main>
     )
 }
