@@ -369,3 +369,23 @@ textarea {
 .top {
     top: 0;
 }
+
+.tracker--container {
+    display: flex;
+    flex-direction: column;
+    background-color: #FF7C43;
+    color: white;
+    margin: 0;
+    padding: 2rem;
+}
+
+.tracker--button {
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.tracker--h1 {
+    text-align: center;
+}

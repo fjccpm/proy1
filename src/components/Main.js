@@ -4,6 +4,7 @@ import boxes from "../boxes"
 import Box from "./Box"
 import Form from "./Form.js"
 import Form2 from "./Form2.js"
+import WindowTracker from "./WindowTracker.js"
 
 export default function Main(props) {
 
@@ -154,6 +155,13 @@ export default function Main(props) {
             .then(data => setStarWarsData(data))
     }, [count])
 
+
+    const [tracker, setTracker] = React.useState(true)
+
+    function toggleTracker() {
+        setTracker(prev => (!prev))
+    }
+
     return (
         <main>
             <h1 className="main--title">Fun facts about React</h1>
@@ -260,6 +268,15 @@ export default function Main(props) {
             <button onClick={() => setCount(prevCount => prevCount + 1)}>Get Next Character</button>
             <pre>{JSON.stringify(starWarsData, null, 2)}</pre>
         </div>
+
+        <br></br><br></br><br></br><br></br>
+        <div className="tracker--container">
+            <button classname="tracker--button" onClick={toggleTracker}>
+                Toggle WindowTracker
+            </button>
+            <WindowTracker tracker={tracker}/>
+        </div>
+
         </main>
     )
 }
