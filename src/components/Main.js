@@ -271,10 +271,10 @@ export default function Main(props) {
 
         <br></br><br></br><br></br><br></br>
         <div className="tracker--container">
-            <button classname="tracker--button" onClick={toggleTracker}>
+            <button className="tracker--button" onClick={toggleTracker}>
                 Toggle WindowTracker
             </button>
-            <WindowTracker tracker={tracker}/>
+            {tracker && <WindowTracker />}
         </div>
 
         </main>

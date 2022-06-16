@@ -1,6 +1,10 @@
 import React from "react"
-import ReactDOM from "react-dom"
+//import ReactDOM from "react-dom"
 import App from "./App"
 import "./style.css"
+import {createRoot} from "react-dom/client"
 
-ReactDOM.render(<App darkMode={false}/>, document.getElementById("root"))
+const container = document.getElementById("root")
+const root = createRoot(container)
+root.render(<App darkMode={false}/>)
+//ReactDOM.render(<App darkMode={false}/>, container)
