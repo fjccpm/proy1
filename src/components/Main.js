@@ -275,7 +275,6 @@ export default function Main(props) {
                 Toggle WindowTracker
             </button>
             {tracker && <WindowTracker />}
-            hola JP
         </div>
 
         </main>
