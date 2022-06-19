@@ -6,5 +6,5 @@ import {createRoot} from "react-dom/client"
 
 const container = document.getElementById("root")
 const root = createRoot(container)
-root.render(<App darkMode={false}/>)
+root.render(<App darkMode={true}/>)
 //ReactDOM.render(<App darkMode={false}/>, container)
